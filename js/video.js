@@ -7,12 +7,15 @@ window.addEventListener("load", function() {
 	console.log("auto play is set to " + video.autoplay);
 	video.loop = false;
 	console.log("looping is set to " + video.loop);
+	const volumeDisplay = document.getElementById('volume');
+	volumeDisplay.textContent = '';
 });
 
 document.querySelector("#play").addEventListener("click", function() {
 	console.log("Play Video");
 	var video = document.querySelector("#player1");
 	video.play();
+	const buttonPressed = true;
 });
 
 document.querySelector("#pause").addEventListener("click", function() {
@@ -61,19 +64,28 @@ document.querySelector("#mute").addEventListener('click', function(){
 });
 
 document.querySelector("#vintage").addEventListener('click', function(){
-	console.log("check");
-	video.style.filter = "grayscale(100%)";
+	var videoTag = document.querySelector('.video');
+	videoTag.classList.remove("video");
+	
+	videoTag.classList.add("oldSchool");
+
+	
+	
 });
 
 document.querySelector("#orig").addEventListener('click', function(){
-	video.style.filter = "grayscale(0%)";
+	var videoTag2 = document.querySelector('#player1');
+	console.log(videoTag2.classList);
+	videoTag2.classList.remove("oldSchool");
+	videoTag2.classList.add("video");
 });
 
 document.addEventListener('DOMContentLoaded', function() {
     const slider = document.getElementById('slider');
     const volumeDisplay = document.getElementById('volume');
-
-    volumeDisplay.textContent = `${slider.value}%`;
+	document.querySelector("#play").addEventListener("click", function() {
+		volumeDisplay.textContent = `${slider.value}%`;
+	});
 	
     slider.addEventListener('input', function() {
         volumeDisplay.textContent = `${slider.value}%`;
@@ -81,3 +93,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 	
 });
+
